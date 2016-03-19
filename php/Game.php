@@ -13,13 +13,13 @@ class Game {
     var $scienceQuestions;
     var $sportsQuestions;
     var $rockQuestions;
-
+    var $culturalQuestions;
     var $currentPlayer = 0;
     var $isGettingOutOfPenaltyBox;
 
     function  __construct(){
 
-   	$this->players = array();
+   		$this->players = array();
         $this->places = array(0);
         $this->purses  = array(0);
         $this->inPenaltyBox  = array(0);
@@ -28,18 +28,19 @@ class Game {
         $this->scienceQuestions = array();
         $this->sportsQuestions = array();
         $this->rockQuestions = array();
+        $this->culturalQuestions = array();
 
         for ($i = 0; $i < 50; $i++) {
 			array_push($this->popQuestions, "Pop Question " . $i);
-			array_push($this->scienceQuestions, ("Science Question " . $i));
-			array_push($this->sportsQuestions, ("Sports Question " . $i));
-			array_push($this->rockQuestions, $this->createRockQuestion($i));
+			array_push($this->scienceQuestions, "Science Question " . $i);
+			array_push($this->sportsQuestions, "Sports Question " . $i);
+			array_push($this->rockQuestions, "Rock Question " . $i);
+			array_push($this->culturalQuestions, "Cultural Question " . $i);
+
     	}
     }
 
-	function createRockQuestion($index){
-		return "Rock Question " . $index;
-	}
+	
 
 	function isPlayable() {
 		return ($this->howManyPlayers() >= 2);
@@ -102,6 +103,8 @@ class Game {
 			echoln(array_shift($this->sportsQuestions));
 		if ($this->currentCategory() == "Rock")
 			echoln(array_shift($this->rockQuestions));
+		if ($this->currentCategory() == "Cultural")
+			echoln(array_shift($this->culturalQuestions));
 	}
 
 
@@ -111,10 +114,10 @@ class Game {
 		if ($this->places[$this->currentPlayer] == 8) return "Pop";
 		if ($this->places[$this->currentPlayer] == 1) return "Science";
 		if ($this->places[$this->currentPlayer] == 5) return "Science";
-		if ($this->places[$this->currentPlayer] == 9) return "Science";
+		if ($this->places[$this->currentPlayer] == 9) return "Cultural";
 		if ($this->places[$this->currentPlayer] == 2) return "Sports";
 		if ($this->places[$this->currentPlayer] == 6) return "Sports";
-		if ($this->places[$this->currentPlayer] == 10) return "Sports";
+		if ($this->places[$this->currentPlayer] == 10) return "Cultural";
 		return "Rock";
 	}
 
