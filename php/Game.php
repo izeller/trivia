@@ -69,14 +69,7 @@ class Game {
 				$this->isGettingOutOfPenaltyBox = true;
 
 				echoln($this->players[$this->currentPlayer] . " is getting out of the penalty box");
-			$this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] + $roll;
-				if ($this->places[$this->currentPlayer] > 11) $this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] - 12;
-
-				echoln($this->players[$this->currentPlayer]
-						. "'s new location is "
-						.$this->places[$this->currentPlayer]);
-				echoln("The category is " . $this->currentCategory());
-				$this->askQuestion();
+				$this->updatePlaceAndAskQuestion($roll);
 			} else {
 				echoln($this->players[$this->currentPlayer] . " is not getting out of the penalty box");
 				$this->isGettingOutOfPenaltyBox = false;
@@ -84,7 +77,13 @@ class Game {
 
 		} else {
 
-		$this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] + $roll;
+			$this->updatePlaceAndAskQuestion($roll);
+		}
+
+	}
+
+	function updatePlaceAndAskQuestion($roll){
+			$this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] + $roll;
 			if ($this->places[$this->currentPlayer] > 11) $this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] - 12;
 
 			echoln($this->players[$this->currentPlayer]
@@ -92,8 +91,6 @@ class Game {
 					.$this->places[$this->currentPlayer]);
 			echoln("The category is " . $this->currentCategory());
 			$this->askQuestion();
-		}
-
 	}
 
 	function  askQuestion() {
