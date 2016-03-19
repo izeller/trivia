@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+ testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+ colors="true">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+	<filter>
+	  <whitelist processUncoveredFilesFromWhitelist="false">
+	    <directory suffix=".php">./</directory>
+	    <file>Game.php</file>
+	    
+	  </whitelist>
+	</filter>
+</phpunit>
