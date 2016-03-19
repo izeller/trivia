@@ -90,5 +90,39 @@ class GameTest extends PHPUnit_Framework_TestCase
             
     }
 
+    /**
+     * @test
+     */
+    public function roll_and_gettingout_of_penalty_box(){
+        $this->game->inPenaltyBox[0] = true;
+
+        $this->game->roll(3);
+
+        $this->assertEquals(3, $this->game->places[0]);
+        $this->assertTrue($this->game->isGettingOutOfPenaltyBox);
+    }
+
+    /**
+     * @test
+     */
+    public function roll_and_not_gettingout_of_penalty_box(){
+        $this->game->inPenaltyBox[0] = true;
+
+        $this->game->roll(2);
+        $this->assertEquals(0, $this->game->places[0]);
+        $this->assertFalse($this->game->isGettingOutOfPenaltyBox);
+    }
+
+    /**
+     * @test
+     */
+    public function roll_and_was_not_in_penalty_box(){
+        $this->game->inPenaltyBox[0] = false;
+
+        $this->game->roll(2);
+        $this->assertEquals(2, $this->game->places[0]);
+        $this->assertNull($this->game->isGettingOutOfPenaltyBox);
+    }
+
 }
 ?>
